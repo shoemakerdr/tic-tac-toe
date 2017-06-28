@@ -1,0 +1,27 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "FreeCodeCamp's Tic Tac Toe project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoemakerdr/tic-tac-toe.git"
+  },
+  "keywords": [
+    "tictactoe",
+    "freecodecamp"
+  ],
+  "author": "Derek Shoemaker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shoemakerdr/tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/shoemakerdr/tic-tac-toe#readme",
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
