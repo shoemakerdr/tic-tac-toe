@@ -1,10 +1,16 @@
+'use strict';
 
 const expect = require('chai').expect;
 const Board = require('../board');
+const board = new Board();
+
+function expectEmptyBoard() {
+    for (let row = 0; row < 3; row++) {
+        expect(board.spaces[row]).to.have.ordered.members([null,null,null]);
+    }
+}
 
 describe('Board', function() {
-    
-    const board = new Board();
     
     beforeEach(function () {
         board.resetBoard();
@@ -12,11 +18,8 @@ describe('Board', function() {
     
     describe('when empty', function () {
         it('should return all spaces as null', function () {
-            expect(board.spaces).to.have.members([
-                null,null,null,
-                null,null,null,
-                null,null,null
-            ]);
+            expectEmptyBoard();    
+                
         });
         it('should know that it is not full', function () {
             expect(board.isFull()).to.be.false;
@@ -28,15 +31,15 @@ describe('Board', function() {
     });
     describe('when full', function () {
         beforeEach(function () {
-            board.addMove('x', 0);
-            board.addMove('o', 1);
-            board.addMove('x', 2);
-            board.addMove('o', 3);
-            board.addMove('x', 4);
-            board.addMove('o', 5);
-            board.addMove('x', 6);
-            board.addMove('o', 7);
-            board.addMove('x', 8);
+            board.addMove('x', 0, 0);
+            board.addMove('o', 0, 1);
+            board.addMove('x', 0, 2);
+            board.addMove('o', 1, 0);
+            board.addMove('x', 1, 1);
+            board.addMove('o', 1, 2);
+            board.addMove('x', 2, 0);
+            board.addMove('o', 2, 1);
+            board.addMove('x', 2, 2);
         });
         it('should know that it is full', function () {
             expect(board.isFull()).to.be.true;
@@ -49,37 +52,33 @@ describe('Board', function() {
         });
         it('should be empty after reset', function () {
             board.resetBoard();
-            expect(board.spaces).to.have.members([
-                null,null,null,
-                null,null,null,
-                null,null,null
-            ]);
+            expectEmptyBoard();
         });
     });
     describe('if a particular space is occupied', function () {
         beforeEach(function () {
-            board.addMove('x', 0); 
+            board.addMove('x', 0, 0); 
         });
         it('should know that it is occupied', function() {
-            expect(board.isSpaceOccupied(0)).to.be.true;
+            expect(board.isSpaceOccupied(0, 0)).to.be.true;
         });
         it('should throw error if second move added that space', function () {
-            expect(function () {board.addMove('x', 0);}).to.throw();
+            expect(function () {board.addMove('x', 0, 0);}).to.throw();
         });
     });
     describe('if a particular space is unoccupied', function () {
         it('should know that it is not occupied', function() {
-            expect(board.isSpaceOccupied(0)).to.be.false;
+            expect(board.isSpaceOccupied(0, 0)).to.be.false;
         });
     });
     describe('when there is a winning board', function() {
         describe('with a row win', function () {
             beforeEach(function () {
-                board.addMove('x', 3);
-                board.addMove('o', 1);
-                board.addMove('x', 4);
-                board.addMove('o', 8);
-                board.addMove('x', 5);
+                board.addMove('x', 1, 0);
+                board.addMove('o', 0, 1);
+                board.addMove('x', 1, 1);
+                board.addMove('o', 2, 2);
+                board.addMove('x', 1, 2);
             });
             it('should be able to tell if the winning player is the winner', function () {
                 expect(board.isWinner('x')).to.be.true;
@@ -89,20 +88,16 @@ describe('Board', function() {
             });
             it('should be empty after reset', function () {
                 board.resetBoard();
-                expect(board.spaces).to.have.members([
-                    null,null,null,
-                    null,null,null,
-                    null,null,null
-                ]);
+                expectEmptyBoard();
             });
         });
         describe('with a column win', function () {
             beforeEach(function () {
-                board.addMove('x', 1);
-                board.addMove('o', 0);
-                board.addMove('x', 4);
-                board.addMove('o', 3);
-                board.addMove('x', 7);
+                board.addMove('x', 0, 1);
+                board.addMove('o', 0, 0);
+                board.addMove('x', 1, 1);
+                board.addMove('o', 1, 0);
+                board.addMove('x', 2, 1);
             });
             it('should be able to tell if the winning player is the winner', function () {
                 expect(board.isWinner('x')).to.be.true;
@@ -112,20 +107,16 @@ describe('Board', function() {
             });
             it('should be empty after reset', function () {
                 board.resetBoard();
-                expect(board.spaces).to.have.members([
-                    null,null,null,
-                    null,null,null,
-                    null,null,null
-                ]);
+                expectEmptyBoard();
             });
         });
         describe('with a diagonal win', function () {
             beforeEach(function () {
-                board.addMove('x', 0);
-                board.addMove('o', 1);
-                board.addMove('x', 4);
-                board.addMove('o', 2);
-                board.addMove('x', 8);
+                board.addMove('x', 0, 0);
+                board.addMove('o', 0, 1);
+                board.addMove('x', 1, 1);
+                board.addMove('o', 0, 2);
+                board.addMove('x', 2, 2);
             });
             it('should be able to tell if the winning player is the winner', function () {
                 expect(board.isWinner('x')).to.be.true;
@@ -135,25 +126,21 @@ describe('Board', function() {
             });
             it('should be empty after reset', function () {
                 board.resetBoard();
-                expect(board.spaces).to.have.members([
-                    null,null,null,
-                    null,null,null,
-                    null,null,null
-                ]);
+                expectEmptyBoard();
             });
         });
     });
     describe('when a full board is a draw', function () {
         beforeEach(function () {
-            board.addMove('x', 0);
-            board.addMove('o', 4);
-            board.addMove('x', 8);
-            board.addMove('o', 3);
-            board.addMove('x', 5);
-            board.addMove('o', 2);
-            board.addMove('x', 6);
-            board.addMove('o', 7);
-            board.addMove('x', 1);
+            board.addMove('x', 0, 0);
+            board.addMove('o', 1, 1);
+            board.addMove('x', 2, 2);
+            board.addMove('o', 1, 0);
+            board.addMove('x', 1, 2);
+            board.addMove('o', 0, 2);
+            board.addMove('x', 2, 0);
+            board.addMove('o', 2, 1);
+            board.addMove('x', 0, 1);
         });
         it('should have no winner', function () {
             expect(board.isWinner('x')).to.be.false;
@@ -161,11 +148,7 @@ describe('Board', function() {
         });
         it('should be empty after reset', function () {
             board.resetBoard();
-            expect(board.spaces).to.have.members([
-                null,null,null,
-                null,null,null,
-                null,null,null
-            ]);
+            expectEmptyBoard();
         });
     });
 });
