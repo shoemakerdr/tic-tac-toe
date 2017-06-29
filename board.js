@@ -1,6 +1,5 @@
 'use strict';
 
-
 function Board() {
     this.spaces = [
         null,null,null,
@@ -27,6 +26,7 @@ Board.prototype.isFull = function() {
 Board.prototype.isSpaceOccupied = function (index) {
     return (this.spaces[index] !== null);
 };
+
 Board.prototype.isWinner = function(player) {
     const spaces = this.spaces;
     return rowWin(player) || columnWin(player) || diagonalWin(player);
