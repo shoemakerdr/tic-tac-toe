@@ -31,6 +31,10 @@ Game.prototype.getState = function () {
                : `Current player is ${this.currentPlayer}`;
 };
 
+Game.prototype.isGameOver = function () {
+    return this.isWinner('x') || this.isWinner('o') || this.board.isFull();
+};
+
 Game.prototype.isWinner = function(player) {
     const spaces = this.board.spaces;
     return rowWin(player) || columnWin(player) || diagonalWin(player);
