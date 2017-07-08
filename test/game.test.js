@@ -13,16 +13,20 @@ function expectEmptyBoard() {
     }
 }
 
+function expectedAvailableSpaces(expectedArray) {
+    const len = expectedArray.length;
+    for (let pair = 0; pair < len; pair++) {
+        expect(game.availableSpaces()[pair]).to.have.ordered.members(expectedArray[pair]);
+    }
+}
+
 describe('Game', function () {
     before(function () {
         game = new Game(board);
     });
     describe('after initializing', function () {
-        it('should have an empty board', function () {
-            expectEmptyBoard();
-        });
-        it('should have the current player as "x"', function () {
-            expect(game.currentPlayer).to.equal('x');
+        it('should show state as current player is x', function () {
+            expect(game.getState()).to.equal('Current player is x');
         });
     });
     describe('after a turn', function () {
@@ -30,22 +34,74 @@ describe('Game', function () {
             game.restart();
             game.turn(0, 0);
         });
-        it('should set the requested move', function () {
-            expect(game.board.spaces[0][0]).to.equal('x');
-        });
-        it('should set the current player to the other player', function () {
-            expect(game.currentPlayer).to.equal('o');
+        it('should show state as current player is o', function () {
+            expect(game.getState()).to.equal('Current player is o');
         });
     });
     describe('after restart', function () {
         before(function () {
             game.restart();
         });
-        it('should have an empty board', function () {
-            expectEmptyBoard();
+        it('should show state as current player is x', function () {
+            expect(game.getState()).to.equal('Current player is x');
         });
-        it('should have the current player as "x"', function () {
-            expect(game.currentPlayer).to.equal('x');
+    });
+    describe('after a full game of moves that ends with no winner', function () {
+        before(function () {
+            game.restart();
+            game.turn(0, 0);
+            game.turn(1, 1);
+            game.turn(2, 2);
+            game.turn(1, 0);
+            game.turn(1, 2);
+            game.turn(0, 2);
+            game.turn(2, 0);
+            game.turn(2, 1);
+            game.turn(0, 1);
+        });
+        it('should show state as "Draw"', function () {
+            expect(game.getState()).to.equal('Draw');
+        });
+    });
+    describe('when there is a winning board', function() {
+        describe('with a row win', function () {
+            before(function () {
+                game.restart();
+                game.turn(1, 0);
+                game.turn(0, 1);
+                game.turn(1, 1);
+                game.turn(2, 2);
+                game.turn(1, 2);
+            });
+            it('should show state as having a winning player', function () {
+                expect(game.getState()).to.equal('x is the winner');
+            });
+        });
+        describe('with a column win', function () {
+            before(function () {
+                game.restart();
+                game.turn(0, 1);
+                game.turn(0, 0);
+                game.turn(1, 1);
+                game.turn(1, 0);
+                game.turn(2, 1);
+            });
+            it('should show state as having a winning player', function () {
+                expect(game.getState()).to.equal('x is the winner');
+            });
+        });
+        describe('with a diagonal win', function () {
+            before(function () {
+                game.restart();
+                game.turn(0, 0);
+                game.turn(0, 1);
+                game.turn(1, 1);
+                game.turn(0, 2);
+                game.turn(2, 2);
+            });
+            it('should show state as having a winning player', function () {
+                expect(game.getState()).to.equal('x is the winner');
+            });
         });
     });
 });
