@@ -22,13 +22,13 @@ Game.prototype.availableSpaces = function () {
 };
 
 Game.prototype.getState = function () {
-    return this.isWinner('x')
-           ? 'x is the winner'
-           : this.isWinner('o')
-             ? 'o is the winner'
-             : this.board.isFull()
-               ? 'Draw'
-               : `Current player is ${this.currentPlayer}`;
+    if (!this.isGameOver())
+        return `Current player is ${this.currentPlayer}`;
+    else return this.isWinner('x')
+                ? 'x is the winner'
+                : this.isWinner('o')
+                  ? 'o is the winner'
+                  : 'Draw';
 };
 
 Game.prototype.isGameOver = function () {
