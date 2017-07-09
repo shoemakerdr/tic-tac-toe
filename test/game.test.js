@@ -28,9 +28,6 @@ describe('Game', function () {
         it('should show state as current player is x', function () {
             expect(game.getState()).to.equal('Current player is x');
         });
-        it('should not be over', function () {
-            expect(game.isGameOver()).to.be.false;
-        });
     });
     describe('after a turn', function () {
         before(function () {
@@ -48,9 +45,6 @@ describe('Game', function () {
         it('should show state as current player is x', function () {
             expect(game.getState()).to.equal('Current player is x');
         });
-        it('should not be over', function () {
-            expect(game.isGameOver()).to.be.false;
-        });
     });
     describe('after a full game of moves that ends with no winner', function () {
         before(function () {
@@ -64,9 +58,6 @@ describe('Game', function () {
             game.turn(2, 0);
             game.turn(2, 1);
             game.turn(0, 1);
-        });
-        it('should be over', function () {
-            expect(game.isGameOver()).to.be.true;
         });
         it('should show state as "Draw"', function () {
             expect(game.getState()).to.equal('Draw');
@@ -82,9 +73,6 @@ describe('Game', function () {
                 game.turn(2, 2);
                 game.turn(1, 2);
             });
-            it('should be over', function () {
-                expect(game.isGameOver()).to.be.true;
-            });
             it('should show state as having a winning player', function () {
                 expect(game.getState()).to.equal('x is the winner');
             });
@@ -98,9 +86,6 @@ describe('Game', function () {
                 game.turn(1, 0);
                 game.turn(2, 1);
             });
-            it('should be over', function () {
-                expect(game.isGameOver()).to.be.true;
-            });
             it('should show state as having a winning player', function () {
                 expect(game.getState()).to.equal('x is the winner');
             });
@@ -113,9 +98,6 @@ describe('Game', function () {
                 game.turn(1, 1);
                 game.turn(0, 2);
                 game.turn(2, 2);
-            });
-            it('should be over', function () {
-                expect(game.isGameOver()).to.be.true;
             });
             it('should show state as having a winning player', function () {
                 expect(game.getState()).to.equal('x is the winner');
