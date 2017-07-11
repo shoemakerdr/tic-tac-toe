@@ -13,13 +13,6 @@ function expectEmptyBoard() {
     }
 }
 
-function expectedAvailableSpaces(expectedArray) {
-    const len = expectedArray.length;
-    for (let pair = 0; pair < len; pair++) {
-        expect(game.availableSpaces()[pair]).to.have.ordered.members(expectedArray[pair]);
-    }
-}
-
 describe('Game', function () {
     before(function () {
         game = new Game(board);
