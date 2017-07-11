@@ -17,8 +17,8 @@ Game.prototype.restart = function () {
     this.currentPlayer = 'x';
 };
 
-Game.prototype.availableSpaces = function () {
-    return this.board.availableSpaces();
+Game.prototype.getBoardSpaces = function () {
+    return this.board.spaces;
 };
 
 Game.prototype.getState = function () {
@@ -36,7 +36,7 @@ Game.prototype.isGameOver = function () {
 };
 
 Game.prototype.isWinner = function(player) {
-    const spaces = this.board.spaces;
+    const spaces = this.getBoardSpaces();
     return rowWin(player) || columnWin(player) || diagonalWin(player);
 
     function rowWin(player) {
