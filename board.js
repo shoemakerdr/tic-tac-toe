@@ -8,6 +8,10 @@ function Board(spaces) {
     ];
 }
 
+Board.prototype.setBoard = function (spaces) {
+    this.spaces = spaces;
+}
+
 Board.prototype.resetBoard = function() {
     this.spaces = this.spaces.map(row => row.map(space => null));
 };
