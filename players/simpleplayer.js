@@ -1,11 +1,11 @@
 'use strict';
 
 function SimplePlayer() {
-	
+
 }
 
-SimplePlayer.prototype.makeMove = function (board) {
-	return this.availableBoardSpaces(board)[0];
+SimplePlayer.prototype.makeMove = function (game) {
+	return this.availableBoardSpaces(game.getBoardSpaces())[0];
 };
 
 SimplePlayer.prototype.availableBoardSpaces = function (board) {
