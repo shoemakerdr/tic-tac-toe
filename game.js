@@ -21,6 +21,10 @@ Game.prototype.getBoardSpaces = function () {
     return this.board.spaces;
 };
 
+Game.prototype.setBoardSpaces = function (spaces) {
+    this.board.setBoard(spaces);
+};
+
 Game.prototype.getState = function () {
     if (!this.isGameOver())
         return `Current player is ${this.currentPlayer}`;
@@ -29,6 +33,14 @@ Game.prototype.getState = function () {
                 : this.isWinner('o')
                   ? 'o is the winner'
                   : 'Draw';
+};
+
+Game.prototype.getCurrentPlayer = function () {
+    return this.currentPlayer;
+};
+
+Game.prototype.setCurrentPlayer = function (player) {
+    this.currentPlayer = player;
 };
 
 Game.prototype.isGameOver = function () {
