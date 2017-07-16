@@ -1,7 +1,7 @@
 'use strict';
 
-function Board(spaces) {
-    this.spaces = spaces || [
+function Board() {
+    this.spaces = [
         [null,null,null],
         [null,null,null],
         [null,null,null]
