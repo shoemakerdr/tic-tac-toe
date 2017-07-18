@@ -2,10 +2,10 @@
 
 const SimplePlayer = require('./simpleplayer');
 
-function SmartPlayer(player, opponent, rules) {
+function SmartPlayer(player, opponent, dummyGame) {
 	this.player = player;
 	this.opponent = opponent;
-	this.rules = rules;
+	this.dummyGame = dummyGame;
 }
 
 SmartPlayer.prototype = Object.create(SimplePlayer.prototype);
@@ -20,18 +20,18 @@ SmartPlayer.prototype.makeMove = function (game) {
 module.exports = SmartPlayer;
 
 function ai(game) {
-	if (this.availableBoardSpaces(game.getBoardSpaces).length === 0) return [1,1];
+	if (isEmpty(game)) return [1,1];
 	let initialDepth = 0;
 	let choice;
 	minimax(game, initialDepth);
 	return choice;
 
-	function isEmpty({spaces}) {
-		return !spaces.filter(item => item !== null).length;
+	function isEmpty(game) {
+		return this.availableBoardSpaces(game.getBoardSpaces()).length === 9;
 	}
 
 	function score(game, depth) {
-		return game.isWinner(this.letter)
+		return game.isWinner(this.player)
 				? 10 - depth
 				: game.isWinner(this.opponent)
 					? depth - 10
