@@ -14,13 +14,16 @@ function setupGame(board, currentPlayer) {
 
 describe('dummyGame', function () {
 	describe('when given an empty game', function () {
+		const emptyGame = setupGame();
+		const emptyBoard = emptyGame.getBoardSpaces();
+		const dummy = dummyGame(emptyGame);
 		it('should return a copy of the game with "x" as the current player and an empty board', function () {
-			const emptyGame = setupGame();
-			const emptyBoard = emptyGame.getBoardSpaces();
-			const dummy = dummyGame(emptyGame);
-
 			assert.deepEqual(dummy.getCurrentPlayer(), 'x');
 			assert.deepEqual(dummy.getBoardSpaces(), emptyBoard);
+		});
+		it('should not return the same board, only a copy', function () {
+			const dummyBoard = dummy.getBoardSpaces();
+			assert.isFalse(dummyBoard === emptyBoard, 'the dummy board should not be the same reference as the incoming board');
 		});
 	});
 	describe('when given a game with one move made', function () {
