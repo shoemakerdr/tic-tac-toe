@@ -7,9 +7,7 @@ function Game(board) {
 
 Game.prototype.turn = function (row, column) {
     this.board.addMove(this.currentPlayer, row, column);
-    this.currentPlayer = (this.currentPlayer === 'x')
-                          ? 'o'
-                          : 'x';
+    this.nextPlayer();
 };
 
 Game.prototype.restart = function () {
@@ -45,6 +43,12 @@ Game.prototype.getCurrentPlayer = function () {
 
 Game.prototype.setCurrentPlayer = function (player) {
     this.currentPlayer = player;
+};
+
+Game.prototype.nextPlayer = function (player) {
+    this.currentPlayer = (this.currentPlayer === 'x')
+                          ? 'o'
+                          : 'x';
 };
 
 Game.prototype.isGameOver = function () {
