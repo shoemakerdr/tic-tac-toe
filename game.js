@@ -17,6 +17,10 @@ Game.prototype.restart = function () {
     this.currentPlayer = 'x';
 };
 
+Game.prototype.getAvailableSpaces = function () {
+    return this.board.availableSpaces();
+}
+
 Game.prototype.getBoardSpaces = function () {
     return this.board.spaces;
 };
