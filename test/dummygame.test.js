@@ -27,31 +27,37 @@ describe('dummyGame', function () {
 		});
 	});
 	describe('when given a game with one move made', function () {
+		const oneMoveBoard = [
+			[null,null,null],
+			[null,null,null],
+			[null,null,'x']
+		];
+		const oneMoveGame = setupGame(oneMoveBoard, 'o');
+		const dummy = dummyGame(oneMoveGame);
 		it('should return a copy of the game with "o" as the current player and the same board configuration', function () {
-			const oneMoveBoard = [
-		        [null,null,null],
-		        [null,null,null],
-		        [null,null,'x']
-		    ];
-			const oneMoveGame = setupGame(oneMoveBoard, 'o');
-			const dummy = dummyGame(oneMoveGame);
-
 			assert.deepEqual(dummy.getCurrentPlayer(), 'o');
 			assert.deepEqual(dummy.getBoardSpaces(), oneMoveBoard);
 		});
+		it('should not return the same board, only a copy', function () {
+			const dummyBoard = dummy.getBoardSpaces();
+			assert.isFalse(dummyBoard === oneMoveBoard, 'the dummy board should not be the same reference as the incoming board');
+		});
 	});
 	describe('when given a game with two moves made', function () {
+		const twoMoveBoard = [
+			[null,null,null],
+			[null,'o',null],
+			[null,null,'x']
+		];
+		const twoMoveGame = setupGame(twoMoveBoard);
+		const dummy = dummyGame(twoMoveGame);
 		it('should return a copy of the game with "x" as the current player and the same board configuration', function () {
-			const twoMoveBoard = [
-		        [null,null,null],
-		        [null,'o',null],
-		        [null,null,'x']
-		    ];
-			const twoMoveGame = setupGame(twoMoveBoard);
-			const dummy = dummyGame(twoMoveGame);
-
 			assert.deepEqual(dummy.getCurrentPlayer(), 'x');
 			assert.deepEqual(dummy.getBoardSpaces(), twoMoveBoard);
+		});
+		it('should not return the same board, only a copy', function () {
+			const dummyBoard = dummy.getBoardSpaces();
+			assert.isFalse(dummyBoard === twoMoveBoard, 'the dummy board should not be the same reference as the incoming board');
 		});
 	});
 });
