@@ -1,11 +1,10 @@
 'use strict';
 
 const Game = require('./game');
-const Board = require('./board');
 
 function dummyGame (game) {
-	const board = new Board(game.board.spaces.map(x => x.map(x => x)));
-	const dummy = new Game(board);
+	const dummy = new Game(game.board);
+	dummy.setBoardSpaces(game.board.spaces.map(x => x.map(x => x)));
 	dummy.setCurrentPlayer(game.currentPlayer);
 	return dummy;
 }
