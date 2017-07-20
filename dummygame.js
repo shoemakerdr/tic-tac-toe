@@ -5,7 +5,7 @@ const Game = require('./game');
 function dummyGame (game) {
 	const dummy = new Game(game.board);
 	dummy.setBoardSpaces(game.board.spaces.map(x => x.map(x => x)));
-	dummy.setCurrentPlayer(game.currentPlayer);
+	dummy.setCurrentPlayer(game.getCurrentPlayer());
 	return dummy;
 }
 
