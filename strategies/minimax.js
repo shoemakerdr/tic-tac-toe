@@ -73,4 +73,10 @@ function getMinimax (player, opponent) {
 	}
 }
 
-module.exports = {opponent, isEmpty, score, possibleGame, getMinimax}
+module.exports = {
+	opponent,
+	isEmpty,
+	score,
+	possibleGame,
+	getMinimax
+}

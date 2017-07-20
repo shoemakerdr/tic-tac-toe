@@ -114,5 +114,9 @@ describe('Minimax module', function () {
 				assert.isTrue(typeof mm === 'function');
 			});
 		});
+		/**
+		 * TODO:
+		 * add test for returned function
+		 */
 	});
 });
