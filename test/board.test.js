@@ -67,9 +67,6 @@ describe('Board', function() {
         it('should know that it is occupied', function() {
             expect(board.isSpaceOccupied(0, 0)).to.be.true;
         });
-        it('should throw error if second move added that space', function () {
-            expect(function () {board.addMove('x', 0, 0);}).to.throw();
-        });
     });
     describe('if a particular space is unoccupied', function () {
         it('should know that it is not occupied', function() {

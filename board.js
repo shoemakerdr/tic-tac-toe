@@ -17,10 +17,8 @@ Board.prototype.resetBoard = function() {
 };
 
 Board.prototype.addMove = function (player, row, column) {
-    if (this.isSpaceOccupied(row, column)) {
-        throw new Error('This space is already occupied!');
-    }
-    else this.spaces[row][column] = player;
+    if (!this.isSpaceOccupied(row, column))
+        this.spaces[row][column] = player;
 };
 
 Board.prototype.isFull = function() {
