@@ -1,7 +1,5 @@
 'use strict';
 
-const dummyGame = require('../dummygame');
-
 function chooseMove(game) {
 	const player = game.getCurrentPlayer();
 	const opponent = opponent(player);
@@ -39,7 +37,7 @@ function minIndex(array) {
 }
 
 function possibleGame (move, game) {
-	const dummy = dummyGame(game);
+	const dummy = game.dummyGame();
 	dummy.board.addMove(dummy.getCurrentPlayer(), move[0], move[1]);
 	dummy.nextPlayer();
 	return dummy;
