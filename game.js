@@ -2,13 +2,20 @@
 
 const Board = require('./board');
 
-function Game(board) {
+function Game(board, x, o) {
     this.board = board;
+    this.x = x;
+    this.o = o;
     this.currentPlayer = 'x';
 }
 
 Game.prototype.turn = function (row, column) {
-    this.board.addMove(this.currentPlayer, row, column);
+    if (row === undefined && column === undefined) {
+        const move = this[this.getCurrentPlayer()](this);
+        row = move[0];
+        column = move[1];
+    }
+    this.board.addMove(this.getCurrentPlayer(), row, column);
     this.nextPlayer();
 };
 
