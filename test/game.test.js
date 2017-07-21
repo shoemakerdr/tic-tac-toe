@@ -4,12 +4,13 @@ const expect = require('chai').expect;
 const assert = require('chai').assert;
 const Game = require('../game');
 const Board = require('../board');
+const player = require('../player');
 
 const board = new Board();
 let game;
 
-function setupGame(board, currentPlayer) {
-	const game = new Game(new Board());
+function setupGame(board, currentPlayer, player1, player2) {
+	const game = new Game(new Board(), player1, player2);
 	if (board) game.setBoardSpaces(board);
 	if (currentPlayer) game.setCurrentPlayer(currentPlayer);
 	return game;
@@ -23,9 +24,9 @@ function expectEmptyBoard() {
 
 describe('Game', function () {
     before(function () {
-        game = new Game(board);
+        game = new Game(board, player('no'), player('no'));
     });
-    describe('after initializing', function () {
+    describe('after initializing with no players', function () {
         it('should show state as current player is x', function () {
             expect(game.getState()).to.equal('Current player is x');
         });

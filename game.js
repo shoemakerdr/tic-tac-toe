@@ -10,8 +10,8 @@ function Game(board, x, o) {
 }
 
 Game.prototype.turn = function (row, column) {
-    row = row || this[this.getCurrentPlayer()](this)[0];
-    column = column || this[this.getCurrentPlayer()](this)[1];
+    // row = row || this[this.getCurrentPlayer()](this)[0];
+    // column = column || this[this.getCurrentPlayer()](this)[1];
     this.board.addMove(this.getCurrentPlayer(), row, column);
     this.nextPlayer();
 };
