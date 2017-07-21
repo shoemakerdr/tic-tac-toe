@@ -1,13 +1,13 @@
 'use strict';
 
 const assert = require('chai').assert;
-const player = require('../player');
+const strategies = require('../../strategies');
 
-describe('player function', function () {
+describe('strategies module', function () {
 	describe('when given a valid strategy', function () {
-		const noStrategy = player('no');
-		const simpleStrategy = player('simple');
-		const smartStrategy = player('smart');
+		const noStrategy = strategies['no'];
+		const simpleStrategy = strategies['simple'];
+		const smartStrategy = strategies['smart'];
 		it('should return a function', function () {
 			assert.isTrue(typeof noStrategy === 'function');
 			assert.isTrue(typeof simpleStrategy === 'function');

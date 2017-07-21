@@ -4,7 +4,6 @@ const expect = require('chai').expect;
 const assert = require('chai').assert;
 const Game = require('../game');
 const Board = require('../board');
-const player = require('../player');
 
 const board = new Board();
 let game;
@@ -24,7 +23,7 @@ function expectEmptyBoard() {
 
 describe('Game', function () {
     before(function () {
-        game = new Game(board, player('no'), player('no'));
+        game = new Game(board, 'no', 'no');
     });
     describe('after initializing with no players', function () {
         it('should show state as current player is x', function () {

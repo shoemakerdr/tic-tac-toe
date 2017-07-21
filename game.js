@@ -1,17 +1,22 @@
 'use strict';
 
 const Board = require('./board');
+const strategies = require('./strategies');
 
-function Game(board, x, o) {
+function Game(board, xStrategy, oStrategy) {
     this.board = board;
-    this.x = x;
-    this.o = o;
+    this.x = strategies[xStrategy];
+    this.o = strategies[oStrategy];
     this.currentPlayer = 'x';
 }
 
 Game.prototype.turn = function (row, column) {
-    // row = row || this[this.getCurrentPlayer()](this)[0];
-    // column = column || this[this.getCurrentPlayer()](this)[1];
+    if (row === undefined && column === undefined) {
+        const player = this.getCurrentPlayer();
+        const move = this[player](this);
+        row = move[0];
+        column = move[1];
+    }
     this.board.addMove(this.getCurrentPlayer(), row, column);
     this.nextPlayer();
 };

@@ -10,7 +10,7 @@ describe('TicTacToe', function () {
         describe('after a completed game where x wins', function() {
 			let ttt;
 			before(function () {
-				ttt = twoPlayerGame();
+				ttt = twoPlayerGame('no','no');
 				ttt.turn(0,0);
 	            ttt.turn(0,1);
 	            ttt.turn(0,2);
@@ -29,7 +29,7 @@ describe('TicTacToe', function () {
         describe('after a completed game where no one wins', function() {
 			let ttt;
 			before(function () {
-				ttt = twoPlayerGame();
+				ttt = twoPlayerGame('no','no');
 				ttt.turn(0, 0);
 	            ttt.turn(1, 1);
 	            ttt.turn(2, 2);
@@ -50,7 +50,7 @@ describe('TicTacToe', function () {
         describe('during an unfinished game', function() {
 			let ttt;
 			before(function () {
-				ttt = twoPlayerGame();
+				ttt = twoPlayerGame('no','no');
 				ttt.turn(0,0);
 	            ttt.turn(1,1);
 	            ttt.turn(2,2);
