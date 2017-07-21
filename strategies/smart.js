@@ -1,7 +1,9 @@
 'use strict';
 
+const mm = require('./minimax');
+
 function smart (game) {
-	return [1,1];
+	return mm.chooseMove(game);
 }
 
 module.exports = smart;

@@ -1,5 +1,7 @@
 'use strict';
 
+const Board = require('./board');
+
 function Game(board) {
     this.board = board;
     this.currentPlayer = 'x';
@@ -52,14 +54,15 @@ Game.prototype.nextPlayer = function (player) {
 };
 
 Game.prototype.dummyGame = function () {
-    const dummy = new Game(this.board);
+    const dummyBoard = new Board();
+    const dummy = new Game(dummyBoard);
 	dummy.setBoardSpaces(this.board.spaces.map(x => x.map(x => x)));
 	dummy.setCurrentPlayer(this.getCurrentPlayer());
 	return dummy;
 }
 
 Game.prototype.isGameOver = function () {
-    return this.isWinner('x') || this.isWinner('o') || this.board.isFull();
+    return this.isWinner('o') || this.isWinner('x') || this.board.isFull();
 };
 
 Game.prototype.isWinner = function(player) {

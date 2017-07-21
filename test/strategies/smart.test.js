@@ -5,9 +5,10 @@ const smart = require('../../strategies/smart');
 const Game = require('../../game');
 const Board = require('../../board');
 
-function setupGame(board) {
+function setupGame(board, player) {
 	const game = new Game(new Board())
 	game.setBoardSpaces(board);
+	game.setCurrentPlayer(player);
 	return game;
 }
 
@@ -18,22 +19,34 @@ describe('Smart strategy', function () {
 			[null, null, null],
 			[null, null, null]
 		];
-		const gameEmptyBoard = setupGame(emptyBoard);
+		const gameEmptyBoard = setupGame(emptyBoard, 'x');
 		it('will return the center space', function () {
 			const centerSpace = [1,1];
 			assert.deepEqual(smart(gameEmptyBoard), centerSpace);
 		});
 	});
-	// describe('when given a game where opponent is one move from winning', function () {
-	// 	const opponentCloseWinBoard = [
-	// 		[null, null, null],
-	// 		[null, 'x', null],
-	// 		['x', null, 'o']
-	// 	];
-	// 	const gameOpponentCloseWin = setupGame(opponentCloseWinBoard);
-	// 	it('will return the space that blocks opponent from winning', function () {
-	// 		const blockingSpace = [0,2];
-	// 		assert.deepEqual(smart(gameOpponentCloseWin), blockingSpace);
-	// 	})
-	// })
+	describe('when given a game where opponent is one move from winning', function () {
+		const opponentCloseWinBoard = [
+			[null, null, null],
+			[null, 'x', null],
+			['x', null, 'o']
+		];
+		const gameOpponentCloseWin = setupGame(opponentCloseWinBoard, 'o');
+		it('will return the space that blocks opponent from winning', function () {
+			const blockingSpace = [0,2];
+			assert.deepEqual(smart(gameOpponentCloseWin), blockingSpace);
+		});
+	});
+	describe('when given a game where player is one move from winning', function () {
+		const playerCloseWinBoard = [
+			[null, null, 'o'],
+			[null, 'o', null],
+			[null, 'x', 'x']
+		];
+		const gamePlayerCloseWin = setupGame(playerCloseWinBoard, 'o');
+		it('will return the space that wins the game', function () {
+			const winningSpace = [2,0];
+			assert.deepEqual(smart(gamePlayerCloseWin), winningSpace);
+		});
+	});
 });

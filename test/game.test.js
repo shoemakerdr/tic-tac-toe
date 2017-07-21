@@ -81,6 +81,7 @@ describe('Game', function () {
         describe('with a column win', function () {
             before(function () {
                 game.restart();
+                game.setCurrentPlayer('o')
                 game.turn(0, 1);
                 game.turn(0, 0);
                 game.turn(1, 1);
@@ -88,7 +89,7 @@ describe('Game', function () {
                 game.turn(2, 1);
             });
             it('should show state as having a winning player', function () {
-                expect(game.getState()).to.equal('x is the winner');
+                expect(game.getState()).to.equal('o is the winner');
             });
         });
         describe('with a diagonal win', function () {
@@ -114,9 +115,8 @@ describe('Game', function () {
     			assert.deepEqual(dummy.getCurrentPlayer(), 'x');
     			assert.deepEqual(dummy.getBoardSpaces(), emptyBoard);
     		});
-    		it('should not return the same board, only a copy', function () {
-    			const dummyBoard = dummy.getBoardSpaces();
-    			assert.isFalse(dummyBoard === emptyBoard, 'the dummy board should not be the same reference as the incoming board');
+    		it('should not return the same board instance, only a copy', function () {
+    			assert.isFalse(dummy.board === emptyGame.board, 'the dummy board should not be the same reference as the incoming board');
     		});
     	});
     	describe('when given a game with one move made', function () {
@@ -131,9 +131,8 @@ describe('Game', function () {
     			assert.deepEqual(dummy.getCurrentPlayer(), 'o');
     			assert.deepEqual(dummy.getBoardSpaces(), oneMoveBoard);
     		});
-    		it('should not return the same board, only a copy', function () {
-    			const dummyBoard = dummy.getBoardSpaces();
-    			assert.isFalse(dummyBoard === oneMoveBoard, 'the dummy board should not be the same reference as the incoming board');
+    		it('should not return the same board instance, only a copy', function () {
+    			assert.isFalse(dummy.board === oneMoveGame.board, 'the dummy board should not be the same reference as the incoming board');
     		});
     	});
     	describe('when given a game with two moves made', function () {
@@ -142,7 +141,7 @@ describe('Game', function () {
     			[null,'o',null],
     			[null,null,'x']
     		];
-    		const twoMoveGame = setupGame(twoMoveBoard);
+    		const twoMoveGame = setupGame(twoMoveBoard, 'x');
     		const dummy = twoMoveGame.dummyGame();
     		it('should return a copy of the game with "x" as the current player and the same board configuration', function () {
     			assert.deepEqual(dummy.getCurrentPlayer(), 'x');

@@ -5,7 +5,7 @@ const minimax = require('../../strategies/minimax');
 const Game = require('../../game');
 const Board = require('../../board');
 
-function setupGame(board) {
+function setupGame(board, player) {
 	const game = new Game(new Board())
 	game.setBoardSpaces(board);
 	return game;
@@ -15,8 +15,8 @@ describe('Minimax module', function () {
 	describe('opponent function', function () {
 		describe('when given a player', function () {
 			it('should return that player\'s opponent', function () {
-				assert.equal(minimax.opponent('x'), 'o');
-				assert.equal(minimax.opponent('o'), 'x');
+				assert.equal(minimax.getOpponent('x'), 'o');
+				assert.equal(minimax.getOpponent('o'), 'x');
 			});
 		});
 	});
@@ -103,7 +103,7 @@ describe('Minimax module', function () {
 				assert.deepEqual(possibleGame.getBoardSpaces(), oneMoveGame.getBoardSpaces());
 			});
 			it('should set the current player to the next player', function () {
-				assert.equal(possibleGame.getCurrentPlayer(), oneMoveGame.getCurrentPlayer())
+				assert.equal(possibleGame.getCurrentPlayer(), 'o');
 			});
 		});
 	});

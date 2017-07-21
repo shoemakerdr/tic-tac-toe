@@ -1,17 +1,18 @@
 'use strict';
 
+let choice;
+
 function chooseMove(game) {
 	const player = game.getCurrentPlayer();
-	const opponent = opponent(player);
+	const opponent = getOpponent(player);
 	const minimax = getMinimax(player, opponent);
 	if (isEmpty(game)) return [1,1];
 	let initialDepth = 0;
-	let choice;
 	minimax(game, initialDepth);
 	return choice;
 }
 
-function opponent (player) {
+function getOpponent (player) {
 	return (player === 'x') ? 'o' : 'x';
 }
 
@@ -21,9 +22,9 @@ function isEmpty(game) {
 
 function score(game, depth, player, opponent) {
 	return game.isWinner(player)
-			? 10 - depth
+			? (10 - depth)
 			: game.isWinner(opponent)
-				? depth - 10
+				? (depth - 10)
 				: 0;
 }
 
@@ -38,7 +39,7 @@ function minIndex(array) {
 
 function possibleGame (move, game) {
 	const dummy = game.dummyGame();
-	dummy.board.addMove(dummy.getCurrentPlayer(), move[0], move[1]);
+	dummy.board.addMove(game.getCurrentPlayer(), move[0], move[1]);
 	dummy.nextPlayer();
 	return dummy;
 }
@@ -50,8 +51,8 @@ function getMinimax (player, opponent) {
 		if (game.isGameOver())
 			return score(game, depth, player, opponent);
 		const newDepth = depth + 1;
-		let scores = [];
-		let moves = [];
+		const scores = [];
+		const moves = [];
 
 		game.getAvailableSpaces().forEach(move => {
 			const possible = possibleGame(move, game); // TODO
@@ -65,7 +66,8 @@ function getMinimax (player, opponent) {
 			const max = maxIndex(scores);
 			choice = moves[max];
 			return scores[max];
-		} else {
+		}
+		if(game.getCurrentPlayer() === opponent) {
 			const min = minIndex(scores);
 			choice = moves[min];
 			return scores[min];
@@ -74,9 +76,10 @@ function getMinimax (player, opponent) {
 }
 
 module.exports = {
-	opponent,
+	getOpponent,
 	isEmpty,
 	score,
 	possibleGame,
-	getMinimax
+	getMinimax,
+	chooseMove
 }
