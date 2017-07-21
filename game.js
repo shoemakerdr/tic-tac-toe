@@ -51,6 +51,13 @@ Game.prototype.nextPlayer = function (player) {
                           : 'x';
 };
 
+Game.prototype.dummyGame = function () {
+    const dummy = new Game(this.board);
+	dummy.setBoardSpaces(this.board.spaces.map(x => x.map(x => x)));
+	dummy.setCurrentPlayer(this.getCurrentPlayer());
+	return dummy;
+}
+
 Game.prototype.isGameOver = function () {
     return this.isWinner('x') || this.isWinner('o') || this.board.isFull();
 };
