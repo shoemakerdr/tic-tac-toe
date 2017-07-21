@@ -46,7 +46,9 @@ function possibleGame (move, game) {
 }
 
 function getMinimax (player, opponent) {
-	return function (game, depth) {
+	return minimax;
+
+	function minimax(game, depth) {
 		if (game.isGameOver())
 			return score(game, depth, player, opponent);
 		const newDepth = depth + 1;
