@@ -25,9 +25,7 @@ function expectEmptyBoard() {
 }
 
 describe('Game', function () {
-    before(function () {
-        game = new Game(board, noStrategy, noStrategy);
-    });
+    game = setupGame(null, null, noStrategy, noStrategy);
     describe('after initializing with no computer players', function () {
         it('should show state as current player is x', function () {
             assert.equal(game.getState(), 'Current player is x');
