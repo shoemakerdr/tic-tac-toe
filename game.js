@@ -1,19 +1,17 @@
 'use strict';
 
 const Board = require('./board');
-const strategies = require('./strategies');
 
 function Game(board, xStrategy, oStrategy) {
     this.board = board;
-    this.x = strategies[xStrategy];
-    this.o = strategies[oStrategy];
+    this.x = xStrategy;
+    this.o = oStrategy;
     this.currentPlayer = 'x';
 }
 
 Game.prototype.turn = function (row, column) {
     if (row === undefined && column === undefined) {
-        const player = this.getCurrentPlayer();
-        const move = this[player](this);
+        const move = this[this.getCurrentPlayer()](this);
         row = move[0];
         column = move[1];
     }
