@@ -1,11 +1,14 @@
 'use strict';
 
-const expect = require('chai').expect;
 const assert = require('chai').assert;
 const Game = require('../game');
 const Board = require('../board');
+const strategies = require('../strategies');
 
 const board = new Board();
+const noStrategy = strategies['no'];
+const simpleStrategy = strategies['simple'];
+const smartStrategy = strategies['smart'];
 let game;
 
 function setupGame(board, currentPlayer, player1, player2) {
@@ -23,11 +26,11 @@ function expectEmptyBoard() {
 
 describe('Game', function () {
     before(function () {
-        game = new Game(board, 'no', 'no');
+        game = new Game(board, noStrategy, noStrategy);
     });
     describe('after initializing with no players', function () {
         it('should show state as current player is x', function () {
-            expect(game.getState()).to.equal('Current player is x');
+            assert.equal(game.getState(), 'Current player is x');
         });
     });
     describe('after a turn', function () {
@@ -36,7 +39,7 @@ describe('Game', function () {
             game.turn(0, 0);
         });
         it('should show state as current player is o', function () {
-            expect(game.getState()).to.equal('Current player is o');
+            assert.equal(game.getState(), 'Current player is o');
         });
     });
     describe('after restart', function () {
@@ -44,7 +47,7 @@ describe('Game', function () {
             game.restart();
         });
         it('should show state as current player is x', function () {
-            expect(game.getState()).to.equal('Current player is x');
+            assert.equal(game.getState(), 'Current player is x');
         });
     });
     describe('after a full game of moves that ends with no winner', function () {
@@ -61,7 +64,7 @@ describe('Game', function () {
             game.turn(0, 1);
         });
         it('should show state as "Draw"', function () {
-            expect(game.getState()).to.equal('Draw');
+            assert.equal(game.getState(), 'Draw');
         });
     });
     describe('when there is a winning board', function() {
@@ -75,7 +78,7 @@ describe('Game', function () {
                 game.turn(1, 2);
             });
             it('should show state as having a winning player', function () {
-                expect(game.getState()).to.equal('x is the winner');
+                assert.equal(game.getState(), 'x is the winner');
             });
         });
         describe('with a column win', function () {
@@ -89,7 +92,7 @@ describe('Game', function () {
                 game.turn(2, 1);
             });
             it('should show state as having a winning player', function () {
-                expect(game.getState()).to.equal('o is the winner');
+                assert.equal(game.getState(), 'o is the winner');
             });
         });
         describe('with a diagonal win', function () {
@@ -102,7 +105,7 @@ describe('Game', function () {
                 game.turn(2, 2);
             });
             it('should show state as having a winning player', function () {
-                expect(game.getState()).to.equal('x is the winner');
+                assert.equal(game.getState(), 'x is the winner');
             });
         });
     });
