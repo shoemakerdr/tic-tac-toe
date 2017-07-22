@@ -1,7 +1,9 @@
 'use strict';
 
 function simple (game) {
-	return game.getAvailableSpaces()[0];
+	const length = game.getAvailableSpaces().length;
+	const randomIndex = Math.floor(Math.random() * length);
+	return game.getAvailableSpaces()[randomIndex];
 }
 
 module.exports = simple;

@@ -11,6 +11,15 @@ function setupGame(board) {
 	return game;
 }
 
+function isValidMove (game, move) {
+	const validMoves = game.getAvailableSpaces();
+	for (let validMove of validMoves) {
+		if (validMove[0] === move[0] && validMove[0] === move[0])
+			return true;
+	}
+	return false;
+}
+
 describe('Simple strategy', function () {
 	describe('given a game with one available space on its board', function () {
 		it('should return the available space', function () {
@@ -31,7 +40,7 @@ describe('Simple strategy', function () {
 		});
 	});
 	describe('given a game with multiple spaces available in its board', function () {
-		it('should return the first available space', function () {
+		it('should return a valid available space', function () {
 			const boardWithAllSpacesAvailable = [
 				[null,null,null],
 				[null,null,null],
@@ -50,9 +59,9 @@ describe('Simple strategy', function () {
 			const gameAll = setupGame(boardWithAllSpacesAvailable);
 			const gameTwo = setupGame(boardWithTwoSpacesAvailable);
 			const gameFour = setupGame(boardWithFourSpacesAvailable);
-			assert.deepEqual(simple(gameAll), [0,0]);
-			assert.deepEqual(simple(gameTwo), [0,2]);
-			assert.deepEqual(simple(gameFour), [0,1]);
+			assert.isTrue(isValidMove(gameAll, simple(gameAll)));
+			assert.isTrue(isValidMove(gameTwo, simple(gameTwo)));
+			assert.isTrue(isValidMove(gameFour, simple(gameFour)));
 		});
 	});
 });
