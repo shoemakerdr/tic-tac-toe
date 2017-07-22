@@ -6,7 +6,7 @@ const Board = require('../board');
 const strategies = require('../strategies');
 
 const board = new Board();
-const noStrategy = strategies['no'];
+const noStrategy = strategies['none'];
 const simpleStrategy = strategies['simple'];
 const smartStrategy = strategies['smart'];
 let game;
@@ -28,43 +28,43 @@ describe('Game', function () {
     before(function () {
         game = new Game(board, noStrategy, noStrategy);
     });
-    describe('after initializing with no players', function () {
+    describe('after initializing with no computer players', function () {
         it('should show state as current player is x', function () {
             assert.equal(game.getState(), 'Current player is x');
         });
-    });
-    describe('after a turn', function () {
-        before(function () {
-            game.restart();
-            game.turn(0, 0);
+        describe('after a turn', function () {
+            before(function () {
+                game.restart();
+                game.turn(0, 0);
+            });
+            it('should show state as current player is o', function () {
+                assert.equal(game.getState(), 'Current player is o');
+            });
         });
-        it('should show state as current player is o', function () {
-            assert.equal(game.getState(), 'Current player is o');
+        describe('after restart', function () {
+            before(function () {
+                game.restart();
+            });
+            it('should show state as current player is x', function () {
+                assert.equal(game.getState(), 'Current player is x');
+            });
         });
-    });
-    describe('after restart', function () {
-        before(function () {
-            game.restart();
-        });
-        it('should show state as current player is x', function () {
-            assert.equal(game.getState(), 'Current player is x');
-        });
-    });
-    describe('after a full game of moves that ends with no winner', function () {
-        before(function () {
-            game.restart();
-            game.turn(0, 0);
-            game.turn(1, 1);
-            game.turn(2, 2);
-            game.turn(1, 0);
-            game.turn(1, 2);
-            game.turn(0, 2);
-            game.turn(2, 0);
-            game.turn(2, 1);
-            game.turn(0, 1);
-        });
-        it('should show state as "Draw"', function () {
-            assert.equal(game.getState(), 'Draw');
+        describe('after a full game of moves that ends with no winner', function () {
+            before(function () {
+                game.restart();
+                game.turn(0, 0);
+                game.turn(1, 1);
+                game.turn(2, 2);
+                game.turn(1, 0);
+                game.turn(1, 2);
+                game.turn(0, 2);
+                game.turn(2, 0);
+                game.turn(2, 1);
+                game.turn(0, 1);
+            });
+            it('should show state as "Draw"', function () {
+                assert.equal(game.getState(), 'Draw');
+            });
         });
     });
     describe('when there is a winning board', function() {

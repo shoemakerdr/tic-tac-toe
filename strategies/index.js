@@ -1,11 +1,11 @@
 'use strict';
 
-const no = require('./no');
+const none = require('./none');
 const simple = require('./simple');
 const smart = require('./smart');
 
 module.exports = {
-	no,
+	none,
 	simple,
 	smart
 }

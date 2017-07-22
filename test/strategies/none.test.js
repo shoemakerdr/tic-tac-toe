@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const no = require('../../strategies/no');
+const none = require('../../strategies/none');
 const Game = require('../../game');
 const Board = require('../../board');
 
@@ -11,7 +11,7 @@ function setupGame(board) {
 	return game;
 }
 
-describe('No strategy', function () {
+describe('A strategy of "none"', function () {
 	describe('when given any game', function () {
 		const boardWithFirstSpaceAvailable = [
 			[null,'o','x'],
@@ -26,8 +26,8 @@ describe('No strategy', function () {
 		];
 		const gameLastSpace = setupGame(boardWithLastSpaceAvailable);
 		it('will return null', function () {
-			assert.equal(no(gameFirstSpace), null);
-			assert.equal(no(gameLastSpace), null);
+			assert.equal(none(gameFirstSpace), null);
+			assert.equal(none(gameLastSpace), null);
 		});
 	});
 });
