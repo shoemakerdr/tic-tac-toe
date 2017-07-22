@@ -66,13 +66,12 @@ function getMinimax (player, opponent) {
 		}
 
 		game.getAvailableSpaces().forEach(move => {
-			const possible = possibleGame(move, game); // TODO
+			const possible = possibleGame(move, game);
 			const score = minimax(possible, newDepth);
 			scores.push(score);
 			moves.push(move);
 		});
 
-		// TODO: make getMinimax function for this conditional block
 		return playerMaxOpponentMin(game.getCurrentPlayer());
 	}
 }
