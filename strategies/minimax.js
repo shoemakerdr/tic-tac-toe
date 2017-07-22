@@ -45,6 +45,7 @@ function possibleGame (move, game) {
 }
 
 function getMinimax (player, opponent) {
+
 	return minimax;
 
 	function minimax(game, depth) {
@@ -54,6 +55,16 @@ function getMinimax (player, opponent) {
 		const scores = [];
 		const moves = [];
 
+		function playerMaxOpponentMin(letter) {
+			const maxMinIndex = {
+				[player]: maxIndex(scores),
+				[opponent]: minIndex(scores)
+			};
+			const index = maxMinIndex[letter]
+			choice = moves[index];
+			return scores[index];
+		}
+
 		game.getAvailableSpaces().forEach(move => {
 			const possible = possibleGame(move, game); // TODO
 			const score = minimax(possible, newDepth);
@@ -62,16 +73,7 @@ function getMinimax (player, opponent) {
 		});
 
 		// TODO: make getMinimax function for this conditional block
-		if (game.getCurrentPlayer() === player) {
-			const max = maxIndex(scores);
-			choice = moves[max];
-			return scores[max];
-		}
-		if(game.getCurrentPlayer() === opponent) {
-			const min = minIndex(scores);
-			choice = moves[min];
-			return scores[min];
-		}
+		return playerMaxOpponentMin(game.getCurrentPlayer());
 	}
 }
 
