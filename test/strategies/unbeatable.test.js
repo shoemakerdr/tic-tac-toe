@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const smart = require('../../strategies/smart');
+const unbeatable = require('../../strategies/unbeatable');
 const Game = require('../../game');
 const Board = require('../../board');
 
@@ -12,7 +12,7 @@ function setupGame(board, player) {
 	return game;
 }
 
-describe('Smart strategy', function () {
+describe('Unbeatable strategy', function () {
 	describe('when given a game with an empty board', function () {
 		const emptyBoard = [
 			[null, null, null],
@@ -22,7 +22,7 @@ describe('Smart strategy', function () {
 		const gameEmptyBoard = setupGame(emptyBoard, 'x');
 		it('will return the center space', function () {
 			const centerSpace = [1,1];
-			assert.deepEqual(smart(gameEmptyBoard), centerSpace);
+			assert.deepEqual(unbeatable(gameEmptyBoard), centerSpace);
 		});
 	});
 	describe('when given a game where opponent is one move from winning', function () {
@@ -34,7 +34,7 @@ describe('Smart strategy', function () {
 		const gameOpponentCloseWin = setupGame(opponentCloseWinBoard, 'o');
 		it('will return the space that blocks opponent from winning', function () {
 			const blockingSpace = [0,2];
-			assert.deepEqual(smart(gameOpponentCloseWin), blockingSpace);
+			assert.deepEqual(unbeatable(gameOpponentCloseWin), blockingSpace);
 		});
 	});
 	describe('when given a game where player is one move from winning', function () {
@@ -46,7 +46,7 @@ describe('Smart strategy', function () {
 		const gamePlayerCloseWin = setupGame(playerCloseWinBoard, 'o');
 		it('will return the space that wins the game', function () {
 			const winningSpace = [2,0];
-			assert.deepEqual(smart(gamePlayerCloseWin), winningSpace);
+			assert.deepEqual(unbeatable(gamePlayerCloseWin), winningSpace);
 		});
 	});
 });
