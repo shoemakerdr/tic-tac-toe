@@ -85,11 +85,11 @@ To play the game just make a call to the turn method. If it is a human player's
 turn, include the row index and column index of the space you'd like to add the
 move as its arguments. 
 ```javascript
-  row >   0     1     2
+column >  0     1     2
         [null, null, null]   0
         [null, null, null]   1
         [null, null, null]   2
-                             ^ column
+                             ^ row
 ```
 
 Example:
