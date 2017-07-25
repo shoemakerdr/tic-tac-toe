@@ -24,7 +24,7 @@ function automatedGame(startPlayer, strategy1, strategy2) {
     return game.getState();
 }
 
-function drawOrXWinner(outcome) {
+function endInDrawOrXWinner(outcome) {
     return outcome === 'Draw' 
         || outcome === 'x is the winner';
 }
@@ -174,14 +174,14 @@ describe('Game', function () {
             const unbeatableOutcome7 = automatedGame(null,unbeatableStrategy, simpleStrategy);
             const unbeatableOutcome8 = automatedGame(null,unbeatableStrategy, simpleStrategy);
             it('should always end in either a draw or in the unbeatable player winning', function () {
-                assert.isTrue(drawOrXWinner(unbeatableOutcome1));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome2));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome3));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome4));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome5));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome6));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome7));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome8));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome1));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
             });
         });
         describe('when unbeatable is second player', function () {
@@ -194,14 +194,14 @@ describe('Game', function () {
             const unbeatableOutcome7 = automatedGame('o',unbeatableStrategy, simpleStrategy);
             const unbeatableOutcome8 = automatedGame('o',unbeatableStrategy, simpleStrategy);
             it('should always end in either a draw or in the unbeatable player winning', function () {
-                assert.isTrue(drawOrXWinner(unbeatableOutcome1));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome2));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome3));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome4));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome5));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome6));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome7));
-                assert.isTrue(drawOrXWinner(unbeatableOutcome8));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome1));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
+                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
             });
         });
         describe('when both players are unbeatable', function () {

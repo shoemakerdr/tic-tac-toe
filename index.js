@@ -1,10 +1,29 @@
 
 const Game = require('./game');
 const Board = require('./board');
+const strategies = require('./strategies');
 
-function twoPlayerGame(xStrategy, oStrategy) {
+const noStrategy = strategies['none'];
+const simpleStrategy = strategies['simple'];
+const unbeatableStrategy = strategies['unbeatable'];
+
+function twoPlayerGame() {
     const board = new Board();
-    return new Game(board, xStrategy, oStrategy);
+    return new Game(board, noStrategy, noStrategy);
 }
 
-exports.twoPlayerGame = twoPlayerGame;
+function easyGame() {
+    const board = new Board();
+    return new Game(board, simpleStrategy, noStrategy);
+}
+
+function unbeatableGame() {
+    const board = new Board();
+    return new Game(board, unbeatableStrategy, noStrategy);
+}
+
+module.exports = {
+    twoPlayerGame,
+    easyGame,
+    unbeatableGame
+};
