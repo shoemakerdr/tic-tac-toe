@@ -1,7 +1,7 @@
 {
-  "name": "tic-tac-toe",
+  "name": "tictactoe-freecodecamp",
   "version": "1.0.0",
-  "description": "FreeCodeCamp's Tic Tac Toe project",
+  "description": "An npm module for FreeCodeCamp's Tic Tac Toe project",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive || true"
