@@ -15,11 +15,11 @@ It uses a simple API that you can easily plug into your application.
 You can include this Tic Tac Toe module into your project by using either 
 require (if using Node) or the ES6 import statement.
 ```javascript
-const ticTacToe = require('./tictactoe');
+const ticTacToe = require('tictactoe-freecodecamp');
 ```
 or
 ```javascript
-import ticTacToe from './tictactoe';
+import ticTacToe from 'tictactoe-freecodecamp';
 ```
 
 ## Tic Tac Toe Games
