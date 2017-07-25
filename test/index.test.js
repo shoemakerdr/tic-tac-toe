@@ -2,62 +2,47 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 const TicTacToe = require('../index');
+const strategies = require('../strategies');
 
-const twoPlayer = TicTacToe.twoPlayerGame;
-const easy = 
-const unbeatableGame = 
+const noStrategy = strategies['none'];
+const simpleStrategy = strategies['simple'];
+const unbeatableStrategy = strategies['unbeatable'];
+const twoPlayerGame = TicTacToe.twoPlayerGame;
+const easyGame = TicTacToe.easyGame;
+const unbeatableGame = TicTacToe.unbeatableGame;
 
 
 describe('TicTacToe', function () {
-    describe('#twoPlayerGame', function() {
-        describe('after a completed game where x wins', function() {
-			const twoP = twoPlayer();
-			twoP.turn(0,0);
-            twoP.turn(0,1);
-            twoP.turn(0,2);
-            twoP.turn(1,0);
-            twoP.turn(1,1);
-            twoP.turn(1,2);
-            twoP.turn(2,0);
-            it('should show x is the winner', function() {
-                expect(twoP.getState()).to.equal('x is the winner');
+    describe('twoPlayerGame method', function() {
+        const twoPlayer = twoPlayerGame();
+        describe('when called', function () {
+            const gameStrategyX = twoPlayer.x;
+            const gameStrategyO = twoPlayer.o;
+            it('should return a new game object with two human players', function () {
+                assert.deepEqual(gameStrategyX, noStrategy);
+                assert.deepEqual(gameStrategyO, noStrategy);
             });
         });
-        describe('after a completed game where no one wins', function() {
-			const twoP = twoPlayer();
-			ttt.turn(0, 0);
-            ttt.turn(1, 1);
-            ttt.turn(2, 2);
-            ttt.turn(1, 0);
-            ttt.turn(1, 2);
-            ttt.turn(0, 2);
-            ttt.turn(2, 0);
-            ttt.turn(2, 1);
-            ttt.turn(0, 1);
-            it('should be over', function() {
-                expect(ttt.isGameOver()).to.equal(true);
-            });
-            it('should not have a winner', function() {
-                expect(ttt.getState()).to.equal('Draw');
+    });
+    describe('easyGame method', function() {
+        const easy = easyGame();
+        describe('when called', function () {
+            const gameStrategyX = easy.x;
+            const gameStrategyO = easy.o;
+            it('should return a new game object with a human player and simple strategy player', function () {
+                assert.deepEqual(gameStrategyX, noStrategy);
+                assert.deepEqual(gameStrategyO, simpleStrategy);
             });
         });
-        describe('during an unfinished game', function() {
-			let ttt;
-			before(function () {
-				ttt = twoPlayerGame('no','no');
-				ttt.turn(0,0);
-	            ttt.turn(1,1);
-	            ttt.turn(2,2);
-	            ttt.turn(1,0);
-	            ttt.turn(1,2);
-	            ttt.turn(2,1);
-	            ttt.turn(0,1);
-			});
-            it('should not be over', function() {
-                expect(ttt.isGameOver()).to.equal(false);
-            });
-            it('should show that it is o\'s turn', function() {
-                expect(ttt.getState()).to.equal('Current player is o');
+    });
+    describe('unbeatableGame method', function() {
+        const unbeatable = unbeatableGame();
+        describe('when called', function () {
+            const gameStrategyX = unbeatable.x;
+            const gameStrategyO = unbeatable.o;
+            it('should return a new game object with a human player and unbeatable strategy player', function () {
+                assert.deepEqual(gameStrategyX, noStrategy);
+                assert.deepEqual(gameStrategyO, unbeatableStrategy);
             });
         });
     });

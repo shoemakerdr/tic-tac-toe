@@ -14,12 +14,12 @@ function twoPlayerGame() {
 
 function easyGame() {
     const board = new Board();
-    return new Game(board, simpleStrategy, noStrategy);
+    return new Game(board, noStrategy, simpleStrategy);
 }
 
 function unbeatableGame() {
     const board = new Board();
-    return new Game(board, unbeatableStrategy, noStrategy);
+    return new Game(board, noStrategy, unbeatableStrategy);
 }
 
 module.exports = {
