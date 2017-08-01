@@ -1,6 +1,6 @@
 {
   "name": "tictactoe-freecodecamp",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An npm module for FreeCodeCamp's Tic Tac Toe project",
   "main": "index.js",
   "scripts": {
