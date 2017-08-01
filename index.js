@@ -12,14 +12,20 @@ function twoPlayerGame() {
     return new Game(board, noStrategy, noStrategy);
 }
 
-function easyGame() {
+function easyGame(player) {
     const board = new Board();
-    return new Game(board, noStrategy, simpleStrategy);
+    if (player === 'o')
+        return new Game(board, simpleStrategy, noStrategy);
+    if (player === 'x' || player === undefined)
+        return new Game(board, noStrategy, simpleStrategy);
 }
 
-function unbeatableGame() {
+function unbeatableGame(player) {
     const board = new Board();
-    return new Game(board, noStrategy, unbeatableStrategy);
+    if (player === 'o')
+        return new Game(board, unbeatableStrategy, noStrategy);
+    if (player === 'x' || player === undefined)
+        return new Game(board, noStrategy, unbeatableStrategy);
 }
 
 module.exports = {
