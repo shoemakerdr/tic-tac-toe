@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
 This is an npm module that can be used for Free Code Camp's Tic Tac Toe project.
-It features three different game settings:
+It features three different game types:
 - two player game
 - easy one player game
 - unbeatable one player game
@@ -10,10 +10,10 @@ It uses a simple API that you can easily plug into your application.
 
 ## Install
     $ npm install tictactoe-freecodecamp
-    
+
 ## Include TicTacToe into Your Project
-You can include this Tic Tac Toe module into your project by using either 
-require (if using Node) or the ES6 import statement.
+You can include this Tic Tac Toe module into your project by using either
+require or the ES6 import statement.
 ```javascript
 const ticTacToe = require('tictactoe-freecodecamp');
 ```
@@ -23,28 +23,41 @@ import ticTacToe from 'tictactoe-freecodecamp';
 ```
 
 ## Tic Tac Toe Games
-When you require or import the tictactoe module into your project, you'll have
-access to three different game settings.
+When you require or import the tic tac toe module into your project, you'll have
+access to three different game types.
 
 To access a two player game:
 ```javascript
 const twoPlayerGame = ticTacToe.twoPlayerGame();
 ```
 
-To access an easy one player game, in which the second player will be a simple
-automated player:
+To access an easy one player game, in which the automated player will be a
+simple automated player:
 ```javascript
 const easyGame = ticTacToe.easyGame();
 ```
 
-To access an unbeatable one player game, in which the second player will be an
-unbeatable automated player:
+To access an unbeatable one player game, in which the automated player will be
+an unbeatable automated player:
 ```javascript
 const unbeatableGame = ticTacToe.unbeatableGame();
 ```
+
+When playing an automated game, you can choose whether the human player will be
+'x' or 'o' by including the player symbol of choice as an argument:
+```javascript
+const easyGameAsO = ticTacToe.easyGame('o');
+```
+or:
+```javascript
+const easyGameAsX = ticTacToe.easyGame('x');
+```
+As shown in earlier examples, if no argument is included, the human player will
+default to 'x'.
+
 ### Using the game
 You can get the state of the game at anytime with the getState() method. For
-example, every game automatically sets the currentPlayer to 'x.'
+example, every game automatically sets the current player to 'x.'
 ```javascript
 const twoPlayerGame = ticTacToe.twoPlayerGame();
 twoPlayerGame.getState();
@@ -68,8 +81,8 @@ twoPlayerGame.getCurrentPlayer();
 ```
 
 The Tic Tac Toe board is represented in this module as a two-dimensional array.
-Each empty space is represented by a null object, and occupied spaces are 
-represented with either simple 'x' or 'o' strings. The board always starts 
+Each empty space is represented by a null object, and occupied spaces are
+represented with either simple 'x' or 'o' strings. The board always starts
 empty. To get the current state of the board, call the getBoardSpaces method:
 ```javascript
 twoPlayerGame.getBoardSpaces();
@@ -83,7 +96,7 @@ twoPlayerGame.getBoardSpaces();
 ### Playing the game: Two players
 To play the game just make a call to the turn method. If it is a human player's
 turn, include the row index and column index of the space you'd like to add the
-move as its arguments. 
+move as its arguments.
 ```javascript
 column >  0     1     2
         [null, null, null]   0
@@ -141,8 +154,8 @@ twoPlayerGame.isGameOver();
 // false
 ```
 
-After a completed game, you can make a call to getState, whick will return 
-either 'Draw' (if the game ends in a draw) or tell you who the winner is. 
+After a completed game, you can make a call to getState, which will return
+either 'Draw' (if the game ends in a draw) or tell you who the winner is.
 Example:
 ```javascript
 twoPlayerGame.getBoardSpaces();
@@ -206,8 +219,9 @@ twoPlayerGame.getCurrentPlayer();
 
 ### Playing the game: One player
 You can also choose to play against an automated player. The 'easy' player will
-choose a random available space when taking a turn. The human player will always
-be 'x', so human players go first by default.:
+choose a random available space when taking a turn. The 'x' player will always
+go first by default, which (if no player symbol is included as an argument when
+intially creating the game type) will be the human player:
 ```javascript
 const easyGame = ticTacToe.easyGame();
 easyGame.getBoardSpaces();
@@ -247,7 +261,7 @@ unbeatableGame.getBoardSpaces();
 //      [null, null, 'x' ]
 //  ]
 unbeatableGame.turn();
-// unbeatable 'o' player will make the best move it can, like 
+// unbeatable 'o' player will make the best move it can, like
 // always taking the center space if available
 unbeatableGame.getBoardSpaces();
 //  [
@@ -296,8 +310,45 @@ unbeatableGame.getState();
 
 The best you could possibly do is end in a draw with the unbeatable player.
 
+### Helpful methods
+There are several methods included in this module that are helpful when
+building your Tic Tac Toe applications. For example, to check if a particular
+space is occupied, use isSpaceOccupied.
+
+```javascript
+unbeatableGame.getBoardSpaces();
+//  [
+//      [null, null, 'o' ],
+//      [null, 'o' , 'x' ],
+//      ['x' , 'o' , 'x' ]
+//  ]
+unbeatableGame.isSpaceOccupied(0,0);
+// false
+unbeatableGame.isSpaceOccupied(1,1);
+// true
+```
+
+You can also check if a particular move is valid given in any particular game
+state with the isValidMove method:
+```javascript
+unbeatableGame.getBoardSpaces();
+//  [
+//      [null, null, 'o' ],
+//      [null, 'o' , 'x' ],
+//      ['x' , 'o' , 'x' ]
+//  ]
+unbeatableGame.isValidMove(1,0);
+// true
+unbeatableGame.isValidMove(0,2);
+// false
+unbeatableGame.isValidMove(0,3);
+// false
+unbeatableGame.isValidMove(2, 'bubble');
+// false
+```
+
 ## Issues
-If you find any issues or bugs with the game or want to request new features, 
+If you find any issues or bugs with the game or want to request new features,
 please do so [here](https://github.com/shoemakerdr/tic-tac-toe/issues).
 
 ## Tests
