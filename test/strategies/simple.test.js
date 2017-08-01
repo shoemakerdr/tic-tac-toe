@@ -14,7 +14,7 @@ function setupGame(board) {
 function isValidMove (game, move) {
 	const validMoves = game.getAvailableSpaces();
 	for (let validMove of validMoves) {
-		if (validMove[0] === move[0] && validMove[0] === move[0])
+		if (validMove[0] === move[0] && validMove[1] === move[1])
 			return true;
 	}
 	return false;
