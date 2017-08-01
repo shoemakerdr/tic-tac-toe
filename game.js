@@ -15,9 +15,11 @@ Game.prototype.turn = function (row, column) {
         row = move[0];
         column = move[1];
     }
-    this.board.addMove(this.getCurrentPlayer(), row, column);
-    this.nextPlayer();
-};
+    if (this.isValidMove(row, column)) {
+        this.board.addMove(this.getCurrentPlayer(), row, column);
+        this.nextPlayer();
+    }
+}
 
 Game.prototype.restart = function () {
     this.board.resetBoard();
@@ -26,6 +28,18 @@ Game.prototype.restart = function () {
 
 Game.prototype.getAvailableSpaces = function () {
     return this.board.availableSpaces();
+}
+
+Game.prototype.isSpaceOccupied = function (row, column) {
+    return this.board.isSpaceOccupied(row, column);
+}
+
+Game.prototype.isValidMove = function (row, column) {
+    return row >= 0
+            && row <= 2
+            && column >= 0
+            && column <= 2
+            && !this.isSpaceOccupied(row, column);
 }
 
 Game.prototype.getBoardSpaces = function () {

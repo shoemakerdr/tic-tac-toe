@@ -25,7 +25,7 @@ function automatedGame(startPlayer, strategy1, strategy2) {
 }
 
 function endInDrawOrXWinner(outcome) {
-    return outcome === 'Draw' 
+    return outcome === 'Draw'
         || outcome === 'x is the winner';
 }
 
@@ -48,6 +48,23 @@ describe('Game', function () {
                 assert.equal(game.getState(), 'Current player is o');
             });
         });
+		describe('after an invalid move', function () {
+			before(function () {
+                game.restart();
+                game.turn(0, 4);
+            });
+			it('should not make move', function () {
+				const emptyBoard = [
+	    			[null,null,null],
+	    			[null,null,null],
+	    			[null,null,null]
+	    		];
+				assert.deepEqual(game.getBoardSpaces(), emptyBoard);
+			});
+			it('should show same current player as before', function () {
+				assert.equal(game.getState(), 'Current player is x');
+			});
+		});
         describe('after restart', function () {
             before(function () {
                 game.restart();
@@ -164,65 +181,91 @@ describe('Game', function () {
     	});
     });
     describe('with unbeatable player', function () {
+		// NOTE: commented out (long-running) passing tests to make test suite go faster
         describe('when unbeatable is first player', function () {
             const unbeatableOutcome1 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome2 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome3 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome4 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome5 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome6 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome7 = automatedGame(null,unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome8 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome2 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome3 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome4 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome5 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome6 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome7 = automatedGame(null,unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome8 = automatedGame(null,unbeatableStrategy, simpleStrategy);
             it('should always end in either a draw or in the unbeatable player winning', function () {
                 assert.isTrue(endInDrawOrXWinner(unbeatableOutcome1));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
             });
         });
         describe('when unbeatable is second player', function () {
             const unbeatableOutcome1 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome2 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome3 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome4 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome5 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome6 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome7 = automatedGame('o',unbeatableStrategy, simpleStrategy);
-            const unbeatableOutcome8 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome2 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome3 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome4 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome5 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome6 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome7 = automatedGame('o',unbeatableStrategy, simpleStrategy);
+            // const unbeatableOutcome8 = automatedGame('o',unbeatableStrategy, simpleStrategy);
             it('should always end in either a draw or in the unbeatable player winning', function () {
                 assert.isTrue(endInDrawOrXWinner(unbeatableOutcome1));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
-                assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome2));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome3));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome4));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome5));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome6));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome7));
+                // assert.isTrue(endInDrawOrXWinner(unbeatableOutcome8));
             });
         });
         describe('when both players are unbeatable', function () {
             const unbeatableOutcome1 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome2 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome3 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome4 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome5 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome6 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome7 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
-            const unbeatableOutcome8 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome2 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome3 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome4 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome5 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome6 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome7 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
+            // const unbeatableOutcome8 = automatedGame(null,unbeatableStrategy, unbeatableStrategy);
             it('should always end in a draw', function () {
                 assert.isTrue(endInDraw(unbeatableOutcome1));
-                assert.isTrue(endInDraw(unbeatableOutcome2));
-                assert.isTrue(endInDraw(unbeatableOutcome3));
-                assert.isTrue(endInDraw(unbeatableOutcome4));
-                assert.isTrue(endInDraw(unbeatableOutcome5));
-                assert.isTrue(endInDraw(unbeatableOutcome6));
-                assert.isTrue(endInDraw(unbeatableOutcome7));
-                assert.isTrue(endInDraw(unbeatableOutcome8));
+                // assert.isTrue(endInDraw(unbeatableOutcome2));
+                // assert.isTrue(endInDraw(unbeatableOutcome3));
+                // assert.isTrue(endInDraw(unbeatableOutcome4));
+                // assert.isTrue(endInDraw(unbeatableOutcome5));
+                // assert.isTrue(endInDraw(unbeatableOutcome6));
+                // assert.isTrue(endInDraw(unbeatableOutcome7));
+                // assert.isTrue(endInDraw(unbeatableOutcome8));
             });
         });
     });
+	describe('isValidMove method', function () {
+		describe('when given a valid move', function () {
+			const game = setupGame(null, null, noStrategy, noStrategy);
+			const validMove1 = [0,0];
+			const validMove2 = [1,0];
+			const validMove3 = [2,2];
+			it('should return true', function () {
+				assert.isTrue(game.isValidMove(validMove1[0], validMove1[1]));
+				assert.isTrue(game.isValidMove(validMove2[0], validMove2[1]));
+				assert.isTrue(game.isValidMove(validMove3[0], validMove3[1]));
+			});
+		});
+		describe('when given an invalid move', function () {
+			const game = setupGame(null, null, noStrategy, noStrategy);
+			game.turn(2,2);
+			const invalidMove1 = [3,0];
+			const invalidMove2 = [1,'bubble'];
+			const invalidMove3 = [2,2];
+			it('should return true', function () {
+				assert.isFalse(game.isValidMove(invalidMove1[0], invalidMove1[1]));
+				assert.isFalse(game.isValidMove(invalidMove2[0], invalidMove2[1]));
+				assert.isFalse(game.isValidMove(invalidMove3[0], invalidMove3[1]));
+			});
+		});
+	});
 });
