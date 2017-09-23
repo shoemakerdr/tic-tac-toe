@@ -1,10 +1,10 @@
 {
   "name": "tictactoe-freecodecamp",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "An npm module for FreeCodeCamp's Tic Tac Toe project",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha --recursive || true"
+    "test": "mocha --require babel-polyfill --compilers js:babel-register --recursive || true"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,13 @@
   },
   "homepage": "https://github.com/shoemakerdr/tic-tac-toe#readme",
   "devDependencies": {
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "webpack": "^3.6.0"
   }
 }
