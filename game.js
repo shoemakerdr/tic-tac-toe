@@ -1,6 +1,6 @@
 'use strict';
 
-const Board = require('./board');
+import Board from './board'
 
 function Game(board, xStrategy, oStrategy) {
     this.board = board;
@@ -130,4 +130,4 @@ Game.prototype.isWinner = function(player) {
     }
 };
 
-module.exports = Game;
+export default Game;

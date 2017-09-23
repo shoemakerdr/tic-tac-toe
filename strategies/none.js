@@ -4,4 +4,4 @@ function none (game) {
 	return null;
 }
 
-module.exports = none;
+export default none;

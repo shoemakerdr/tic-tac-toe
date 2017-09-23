@@ -48,4 +48,4 @@ Board.prototype.availableSpaces = function () {
     return available;
 };
 
-module.exports = Board;
+export default Board;

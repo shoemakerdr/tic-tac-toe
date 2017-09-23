@@ -1,12 +1,8 @@
 
-const expect = require('chai').expect;
-const assert = require('chai').assert;
-const TicTacToe = require('../index');
-const strategies = require('../strategies');
+import { assert } from 'chai'
+import TicTacToe from '../index'
+import { none, simple, unbeatable } from '../strategies'
 
-const noStrategy = strategies['none'];
-const simpleStrategy = strategies['simple'];
-const unbeatableStrategy = strategies['unbeatable'];
 const twoPlayerGame = TicTacToe.twoPlayerGame;
 const easyGame = TicTacToe.easyGame;
 const unbeatableGame = TicTacToe.unbeatableGame;
@@ -19,8 +15,8 @@ describe('TicTacToe', function () {
             const gameStrategyX = twoPlayer.x;
             const gameStrategyO = twoPlayer.o;
             it('should return a new game object with two human players', function () {
-                assert.deepEqual(gameStrategyX, noStrategy);
-                assert.deepEqual(gameStrategyO, noStrategy);
+                assert.deepEqual(gameStrategyX, none);
+                assert.deepEqual(gameStrategyO, none);
             });
         });
     });
@@ -30,19 +26,19 @@ describe('TicTacToe', function () {
             const gameStrategyX = easy.x;
             const gameStrategyO = easy.o;
             it('should return a new game object with a human player and simple strategy player', function () {
-                assert.deepEqual(gameStrategyX, noStrategy);
-                assert.deepEqual(gameStrategyO, simpleStrategy);
+                assert.deepEqual(gameStrategyX, none);
+                assert.deepEqual(gameStrategyO, simple);
             });
         });
     });
     describe('unbeatableGame method with no argument', function() {
-        const unbeatable = unbeatableGame();
+        const unbeatableG = unbeatableGame();
         describe('when called', function () {
-            const gameStrategyX = unbeatable.x;
-            const gameStrategyO = unbeatable.o;
+            const gameStrategyX = unbeatableG.x;
+            const gameStrategyO = unbeatableG.o;
             it('should return a new game object with a human player and unbeatable strategy player', function () {
-                assert.deepEqual(gameStrategyX, noStrategy);
-                assert.deepEqual(gameStrategyO, unbeatableStrategy);
+                assert.deepEqual(gameStrategyX, none);
+                assert.deepEqual(gameStrategyO, unbeatable);
             });
         });
     });
@@ -52,19 +48,19 @@ describe('TicTacToe', function () {
             const gameStrategyX = easy.x;
             const gameStrategyO = easy.o;
             it('should return a new game object with a human player and simple strategy player', function () {
-                assert.deepEqual(gameStrategyX, simpleStrategy);
-                assert.deepEqual(gameStrategyO, noStrategy);
+                assert.deepEqual(gameStrategyX, simple);
+                assert.deepEqual(gameStrategyO, none);
             });
         });
     });
     describe('unbeatableGame method with "o" argument', function() {
-        const unbeatable = unbeatableGame('o');
+        const unbeatableG = unbeatableGame('o');
         describe('when called', function () {
-            const gameStrategyX = unbeatable.x;
-            const gameStrategyO = unbeatable.o;
+            const gameStrategyX = unbeatableG.x;
+            const gameStrategyO = unbeatableG.o;
             it('should return a new game object with a human player and unbeatable strategy player', function () {
-                assert.deepEqual(gameStrategyX, unbeatableStrategy);
-                assert.deepEqual(gameStrategyO, noStrategy);
+                assert.deepEqual(gameStrategyX, unbeatable);
+                assert.deepEqual(gameStrategyO, none);
             });
         });
     });
@@ -74,19 +70,19 @@ describe('TicTacToe', function () {
             const gameStrategyX = easy.x;
             const gameStrategyO = easy.o;
             it('should return a new game object with a human player and simple strategy player', function () {
-                assert.deepEqual(gameStrategyX, noStrategy);
-                assert.deepEqual(gameStrategyO, simpleStrategy);
+                assert.deepEqual(gameStrategyX, none);
+                assert.deepEqual(gameStrategyO, simple);
             });
         });
     });
     describe('unbeatableGame method with "x" argument', function() {
-        const unbeatable = unbeatableGame('x');
+        const unbeatableG = unbeatableGame('x');
         describe('when called', function () {
-            const gameStrategyX = unbeatable.x;
-            const gameStrategyO = unbeatable.o;
+            const gameStrategyX = unbeatableG.x;
+            const gameStrategyO = unbeatableG.o;
             it('should return a new game object with a human player and unbeatable strategy player', function () {
-                assert.deepEqual(gameStrategyX, noStrategy);
-                assert.deepEqual(gameStrategyO, unbeatableStrategy);
+                assert.deepEqual(gameStrategyX, none);
+                assert.deepEqual(gameStrategyO, unbeatable);
             });
         });
     });

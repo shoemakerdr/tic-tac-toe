@@ -1,7 +1,8 @@
 'use strict';
 
-const expect = require('chai').expect;
-const Board = require('../board');
+import { expect } from 'chai'
+import Board from '../Board'
+
 const board = new Board();
 
 function expectEmptyBoard() {

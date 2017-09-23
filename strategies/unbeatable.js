@@ -78,4 +78,4 @@ function unbeatable (game) {
     }
 }
 
-module.exports = unbeatable;
+export default unbeatable;

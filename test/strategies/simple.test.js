@@ -1,9 +1,9 @@
 'use strict';
 
-const assert = require('chai').assert;
-const simple = require('../../strategies/simple');
-const Game = require('../../game');
-const Board = require('../../board');
+import { assert } from 'chai'
+import Game from '../../game'
+import Board from '../../board'
+import simple from '../../strategies/simple'
 
 function setupGame(board) {
 	const game = new Game(new Board())

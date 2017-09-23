@@ -1,10 +1,10 @@
 'use strict';
 
-const none = require('./none');
-const simple = require('./simple');
-const unbeatable = require('./unbeatable');
+import none from './none'
+import simple from './simple'
+import unbeatable from './unbeatable'
 
-module.exports = {
+export {
 	none,
 	simple,
 	unbeatable

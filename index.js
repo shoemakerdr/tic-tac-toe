@@ -1,35 +1,34 @@
 
-const Game = require('./game');
-const Board = require('./board');
-const strategies = require('./strategies');
-
-const noStrategy = strategies['none'];
-const simpleStrategy = strategies['simple'];
-const unbeatableStrategy = strategies['unbeatable'];
+import Game from './game'
+import Board from './board'
+import strategies from './strategies'
+import { none, simple, unbeatable } from './strategies'
 
 function twoPlayerGame() {
     const board = new Board();
-    return new Game(board, noStrategy, noStrategy);
+    return new Game(board, none, none);
 }
 
 function easyGame(player) {
     const board = new Board();
     if (player === 'o')
-        return new Game(board, simpleStrategy, noStrategy);
+        return new Game(board, simple, none);
     if (player === 'x' || player === undefined)
-        return new Game(board, noStrategy, simpleStrategy);
+        return new Game(board, none, simple);
 }
 
 function unbeatableGame(player) {
     const board = new Board();
     if (player === 'o')
-        return new Game(board, unbeatableStrategy, noStrategy);
+        return new Game(board, unbeatable, none);
     if (player === 'x' || player === undefined)
-        return new Game(board, noStrategy, unbeatableStrategy);
+        return new Game(board, none, unbeatable);
 }
 
-module.exports = {
+const TicTacToe = {
     twoPlayerGame,
     easyGame,
     unbeatableGame
 };
+
+export default TicTacToe

@@ -6,4 +6,4 @@ function simple (game) {
 	return game.getAvailableSpaces()[randomIndex];
 }
 
-module.exports = simple;
+export default simple;
