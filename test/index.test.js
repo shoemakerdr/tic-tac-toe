@@ -1,14 +1,14 @@
 
 import { assert } from 'chai'
-import TicTacToe from '../index'
+import ticTacToe from '../index'
 import { none, simple, unbeatable } from '../strategies'
 
-const twoPlayerGame = TicTacToe.twoPlayerGame;
-const easyGame = TicTacToe.easyGame;
-const unbeatableGame = TicTacToe.unbeatableGame;
+const twoPlayerGame = ticTacToe.twoPlayerGame;
+const easyGame = ticTacToe.easyGame;
+const unbeatableGame = ticTacToe.unbeatableGame;
 
 
-describe('TicTacToe', function () {
+describe('ticTacToe', function () {
     describe('twoPlayerGame method', function() {
         const twoPlayer = twoPlayerGame();
         describe('when called', function () {

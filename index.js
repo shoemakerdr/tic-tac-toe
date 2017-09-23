@@ -25,10 +25,10 @@ function unbeatableGame(player) {
         return new Game(board, none, unbeatable);
 }
 
-const TicTacToe = {
+const ticTacToe = {
     twoPlayerGame,
     easyGame,
     unbeatableGame
 };
 
-export default TicTacToe
+export default ticTacToe
