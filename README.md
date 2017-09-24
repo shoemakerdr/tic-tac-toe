@@ -12,12 +12,8 @@ It uses a simple API that you can easily plug into your application.
     $ npm install tictactoe-freecodecamp
 
 ## Include TicTacToe into Your Project
-You can include this Tic Tac Toe module into your project by using either
-require or the ES6 import statement.
-```javascript
-const ticTacToe = require('tictactoe-freecodecamp');
-```
-or
+NOTE: This library is now only compatible with ES6 modules as it is intended as
+a front end library.
 ```javascript
 import ticTacToe from 'tictactoe-freecodecamp';
 ```
