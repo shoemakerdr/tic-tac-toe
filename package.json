@@ -1,8 +1,8 @@
 {
   "name": "tictactoe-freecodecamp",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "An npm module for FreeCodeCamp's Tic Tac Toe project",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-polyfill --compilers js:babel-register --recursive || true"
   },
